@@ -1,0 +1,48 @@
+import pandas as pd
+from pandas import DataFrame
+from google.colab import files
+import io
+import os
+uploaded = files.upload()
+
+df1=pd.read_csv(io.StringIO(uploaded['list_of_purchases.csv'].decode('ISO-8859-1')))
+df3=pd.read_csv(io.StringIO(uploadedsales['list_of_sales.csv'].decode('ISO-8859-1')))
+
+
+dfqwe= pd.DataFrame((df1['Seller_tin'].append(df3['Seller_TIN'])))
+file = pd.DataFrame(dfqwe.loc[dfqwe.drop_duplicates, :])
+file.to_excel('duplicate.xlsx',index = False)
+
+dfqwe= pd.DataFrame((df1['Seller_tin'].append(df3['Seller_TIN'])).unique())
+file= pd.DataFrame((df1['Seller_tin'].append(df3['Seller_TIN'])).unique())
+file.to_excel('aaaa.xlsx',index = False)
+
+
+dfqwe= pd.DataFrame((df1['Seller_tin'].append(df3['Seller_TIN'])))
+file = pd.DataFrame(dfqwe.loc[dfqwe.drop_duplicates, :])
+file.to_excel('seller_duplicate.xlsx',index = False)
+
+
+file = pd.DataFrame(df1.loc[df1.duplicated(), :])
+
+
+dfuniqueseller=pd.DataFrame
+dfuniquepurchaser=pd.DataFrame
+dfuniqueseller=(df3['Seller_TIN']).unique()
+dfuniquepurchaser=(df1['Seller_tin']).unique()
+
+
+
+for i,row in dfuniquepurchaser.iterrows():
+   for j,row in dfuniqueseller.iterrows():    
+     if dfuniqueseller.Seller_TIN[j] == dfuniquepurchaser.Seller_tin[i] :
+      print(dfuniqueseller.Seller_TIN[i])
+
+
+
+uniqueValues2 = (df3['Seller_TIN']).unique()
+for i,row in df1.iterrows():
+   for j,row in df3.iterrows():    
+     if df3.Seller_TIN[j] != df1.Seller_tin[i] :
+        print(df3.Seller_TIN[i],df1.Seller_tin[i])
+file.to_excel('purchaser_duplicate.xlsx',inde
